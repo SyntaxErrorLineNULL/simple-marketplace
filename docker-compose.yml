@@ -12,7 +12,6 @@ services:
 
     php-fpm:
         container_name: market_php-fpm
-        command: php -S 0.0.0.0:8080 -t public
         build:
             context: docker
             dockerfile: php-fpm/Dockerfile
@@ -39,3 +38,12 @@ services:
             DB_NAME: app
         volumes:
             - ./:/app
+
+    api-postgres:
+        image: postgres:13.1-alpine
+        environment:
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: app
+        ports:
+            - "127.0.0.1:54321:5432"
