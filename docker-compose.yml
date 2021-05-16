@@ -1,14 +1,16 @@
 version: '3.7'
 
 services:
-    api:
+    nginx:
+        container_name: marydo_nginx_dev
         image: nginx
         volumes:
-            - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+            - ./docker/nginx/:/etc/nginx/conf.d
             - ./:/app
-        restart: always
-        depends_on:
+        links:
             - php-fpm
+        ports:
+            - '8000:80'
 
     php-fpm:
         container_name: market_php-fpm
