@@ -9,9 +9,9 @@ api-composer-install:
 	docker-compose -f docker-compose.yml run --rm php-cli composer install
 api-composer-update:
 	docker-compose -f docker-compose.yml run --rm php-cli composer update
-#init-db:
-#	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/doctrine orm:schema-tool:drop --force && \
-#   docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/doctrine orm:schema-tool:create
+init-db:
+	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/console doctrine:schema:drop --force && \
+   docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/console orm:schema-tool:create
 clear-cache:
-	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/doctrine orm:clear-cache:metadata && \
-	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/doctrine orm:clear-cache:query
+	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/console doctrine:cache:clear-metadata && \
+	docker-compose -f docker-compose.yml run --rm php-cli vendor/bin/console doctrine:cache:clear-query
