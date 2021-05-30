@@ -48,4 +48,4 @@ services:
             POSTGRES_PASSWORD: secret
             POSTGRES_DB: app
         ports:
-            - "127.0.0.1:54321:5432"
+           - "127.0.0.1:5432:5432"
